@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
 #include <limits.h>
 #include <fcntl.h>
@@ -145,7 +146,7 @@ void remove_comments(char *);
 
 /* COMMANDS */
 int _myexit(info_t *);
-int _mycd(info_t);
+int _mycd(info_t *);
 int _myhelp(info_t *);
 
 /* COMMANDS */
@@ -186,7 +187,8 @@ void free_list(list_t **);
 /* COMMANDS */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
-size_t *node_starts_with(list_t *, char *, char);
+size_t print_list(const list_t *);
+list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 /* COMMANDS */
