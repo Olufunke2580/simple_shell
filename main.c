@@ -4,7 +4,7 @@
  * main - entry point
  * @ac: arg count
  * @av: arg vector
- *
+ * @info: it is what it is
  *
  * Return: 0 on success, 1 on error
  */
