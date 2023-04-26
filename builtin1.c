@@ -1,11 +1,9 @@
 #include "shell.h"
 
 /**
- * _myhistory - display the history list,
- * one command by line, preceded
- * with line numbers, starting at 0.
+ * _myhistory - display the history
+ *
  * @info: Structure containing potential arguments.
- *  Used to maintain constant function prototype.
  *  Return: Always 0
  */
 
@@ -25,17 +23,17 @@ int _myhistory(info_t *info)
 
 int unset_alias(info_t *info, char *str)
 {
-	char *p, c;
+	char *ptr, b;
 	int ret;
 
-	p = _strchr(str, '=');
-	if (!p)
+	ptr = _strchr(str, '=');
+	if (!ptr)
 		return (1);
-	c = *p;
-	*p = 0;
+	b = *ptr;
+	*ptr = 0;
 	ret = delete_node_at_index(&(info->alias),
 		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
+	*ptr = b;
 	return (ret);
 }
 
@@ -49,12 +47,12 @@ int unset_alias(info_t *info, char *str)
 
 int set_alias(info_t *info, char *str)
 {
-	char *p;
+	char *ptr;
 
-	p = _strchr(str, '=');
-	if (!p)
+	ptr = _strchr(str, '=');
+	if (!ptr)
 		return (1);
-	if (!*++p)
+	if (!*++ptr)
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
@@ -65,20 +63,20 @@ int set_alias(info_t *info, char *str)
  * print_alias - print an alias string
  * @node: the alias node
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always on success, 1 on error
  */
 
 int print_alias(list_t *node)
 {
-	char *p = NULL, *a = NULL;
+	char *ptr = NULL, *a = NULL;
 
 	if (node)
 	{
-		p = _strchr(node->str, '=');
-		for (a = node->str; a <= p; a++)
+		ptr = _strchr(node->str, '=');
+		for (a = node->str; a <= ptr; a++)
 		_putchar(*a);
 		_putchar('\'');
-		_puts(p + 1);
+		_puts(ptr + 1);
 		_puts("'\n");
 		return (0);
 	}
@@ -95,7 +93,7 @@ int print_alias(list_t *node)
 int _myalias(info_t *info)
 {
 	int i = 0;
-	char *p = NULL;
+	char *ptr = NULL;
 	list_t *node = NULL;
 
 	if (info->argc == 1)
@@ -110,8 +108,8 @@ int _myalias(info_t *info)
 	}
 	for (i = 1; info->argv[i]; i++)
 	{
-		p = _strchr(info->argv[i], '=');
-		if (p)
+		ptr = _strchr(info->argv[i], '=');
+		if (ptr)
 			set_alias(info, info->argv[i]);
 		else
 			print_alias(node_starts_with(info->alias, info->argv[i], '='));
@@ -119,4 +117,3 @@ int _myalias(info_t *info)
 
 	return (0);
 }
-

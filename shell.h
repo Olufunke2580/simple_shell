@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <uinstd.h>
-#include <strin.h>
+#include <unistd.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <limits.h>
@@ -51,7 +51,7 @@ typedef struct passinfo
 	char *arg;
 	char **argv;
 	char *path;
-	int argv;
+	int argc;
 	unsigned int line_count;
 	int err_num;
 	int linecount_flag;
@@ -89,9 +89,9 @@ void fork_cmd(info_t *);
 
 
 /* COMMANDS */
-void eputs(char *);
+void _eputs(char *);
 int _eputchar(char);
-iny _putfd(char c, int fd);
+int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 /* COMMANDS */
@@ -109,15 +109,15 @@ char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
 /* COMMANDS */
-char *strcpy(char *, char *);
-char *strdup(const char *);
+char *_strcpy(char *, char *);
+char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
 /* COMMANDS */
-char *strncpy(char *, char *, int);
-char *strncat(char *, char *, int);
-char *strchr(char *, char);
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
 
 /* COMMANDS */
 char **strtow(char *, char *);
@@ -134,7 +134,7 @@ int bfree(void **);
 /* COMMANDS */
 int interactive(info_t *);
 int is_delim(char, char *);
-int isalpha(int);
+int _isalpha(int);
 int _atoi(char *);
 
 /* COMMANDS */
@@ -164,7 +164,7 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* COMMANDS */
-char *getenv(info_t *, const char *);
+char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
@@ -192,7 +192,7 @@ ssize_t get_node_index(list_t *, list_t *);
 
 /* COMMANDS */
 int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t, size_t);
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);

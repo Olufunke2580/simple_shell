@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
- * INTERACTIVE - returns true if shell is interactive 
+ * INTERACTIVE - returns true
  * @info: struct address
  *
- * Return: 1 if interactive otherwise return 0
+ * Return: return 1 if it is interactive if not return 0
  */
 
 int interactive(info_t *info)
@@ -11,29 +11,23 @@ int interactive(info_t *info)
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
-/**
- * is_delim - check if character is delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: if true return 1, if false 0
- */
-int is_delim(char c, char *delim)
+int is_delim(char b, char *delim)
 {
 	while (*delim)
-		if (*delim++ == c)
+		if (*delim++ == b)
 			return (1);
 	return (0);
 }
 
 /**
- * _isalpha - checks for alphabetical character
- * @c: The character to input
- * Return: if c is alphabetic return 1, return 0 otherwise
+ * _isalpha - checks for alphabets
+ * @b: The character to input
+ * Return: if b is alphabetic return 1, return 0 otherwise
  */
 
-int _isalpha(int c)
+int _isalpha(int b)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((b >= 'a' && b <= 'z') || (b >= 'A' && b <= 'Z'))
 		return (1);
 	else
 		return (0);
