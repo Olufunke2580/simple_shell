@@ -21,7 +21,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
-		//signal(SIGINT, sigintHandler);
+		/* signal(SIGINT, sigintHandler); */
 #if USE_GETLINE
 		s = getline(buf, &len_p, stdin);
 #else
@@ -159,7 +159,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	return (n);
 }
 
-//void sigintHandler(__attribute__((unused))int sig_num)
+/* void sigintHandler(__attribute__((unused))int sig_num) */
 /**
  * sigintHandler - blocks
  * @sig_num: the signal num
